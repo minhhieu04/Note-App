@@ -1,0 +1,27 @@
+{
+  "name": "note-app",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "server.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.msj"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.7.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.9.0",
+    "graphql-subscriptions": "^2.0.0",
+    "http": "^0.0.1-security",
+    "moment": "^2.29.4",
+    "mongoose": "^7.2.4",
+    "nodemon": "^2.0.22"
+  }
+}
