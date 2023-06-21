@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React, { createContext, useEffect, useState } from "react";
-import { getAuth } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import React, { createContext, useEffect, useState } from 'react';
+import { getAuth } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 export const AuthContext = createContext();
 
@@ -16,11 +14,11 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubcribed = auth.onIdTokenChanged((user) => {
-      console.log("[From AuthProvider]", { user });
+      console.log('[From AuthProvider]', { user });
       if (user?.uid) {
         setUser(user);
-        if (user.accessToken !== localStorage.getItem("accessToken")) {
-          localStorage.setItem("accessToken", user.accessToken);
+        if (user.accessToken !== localStorage.getItem('accessToken')) {
+          localStorage.setItem('accessToken', user.accessToken);
           window.location.reload();
         }
         setIsLoading(false);
@@ -28,11 +26,11 @@ export default function AuthProvider({ children }) {
       }
 
       // reset user info
-      console.log("reset");
+      console.log('reset');
       setIsLoading(false);
       setUser({});
       localStorage.clear();
-      navigate("/login");
+      navigate('/login');
     });
 
     return () => {

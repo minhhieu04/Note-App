@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Button,
   Dialog,
@@ -38,6 +37,7 @@ export default function NewFolder() {
 
   const handleAddNewFolder = async () => {
     const { addFolder } = await addNewFolder({ name: newFolderName });
+
     handleClose();
   };
 
@@ -59,13 +59,13 @@ export default function NewFolder() {
         </IconButton>
       </Tooltip>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Thư mục mới</DialogTitle>
+        <DialogTitle>Thêm thư mục</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Folder Name"
+            label="Tên thư mục"
             fullWidth
             size="small"
             variant="standard"
@@ -77,7 +77,7 @@ export default function NewFolder() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cen sồ</Button>
-          <Button onClick={handleAddNewFolder}>Okue</Button>
+          <Button onClick={handleAddNewFolder}>OKue</Button>
         </DialogActions>
       </Dialog>
     </div>

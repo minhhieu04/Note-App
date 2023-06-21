@@ -40,6 +40,8 @@ const wsServer = new WebSocketServer({
 const serverCleanup = useServer({ schema }, wsServer);
 
 const server = new ApolloServer({
+  // typeDefs,
+  // resolvers,
   schema,
   plugins: [
     ApolloServerPluginDrainHttpServer({ httpServer }), // Proper shutdown for the WebSocket server.
@@ -58,7 +60,6 @@ const server = new ApolloServer({
 await server.start();
 
 const authorizationJWT = async (req, res, next) => {
-  console.log({ authorization: req.headers.authorization });
   const authorizationHeader = req.headers.authorization;
 
   if (authorizationHeader) {
@@ -67,7 +68,6 @@ const authorizationJWT = async (req, res, next) => {
     getAuth()
       .verifyIdToken(accessToken)
       .then((decodedToken) => {
-        console.log({ decodedToken });
         res.locals.uid = decodedToken.uid;
         next();
       })
@@ -101,5 +101,5 @@ mongoose
   .then(async () => {
     console.log("Connected to DB");
     await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
-    console.log("🚀 Server ready at http://localhost:4000");
+    console.log("Server ready at http://localhost:4000");
   });

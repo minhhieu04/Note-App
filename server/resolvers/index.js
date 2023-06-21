@@ -3,7 +3,7 @@ import {
   AuthorModel,
   FolderModel,
   NoteModel,
-  // NotificationModel,
+  NotificationModel,
 } from "../models/index.js";
 import { PubSub } from "graphql-subscriptions";
 
@@ -26,12 +26,10 @@ export const resolvers = {
       }).sort({
         updatedAt: "desc",
       });
-      console.log({ folders, context });
       return folders;
     },
     folder: async (parent, args) => {
       const folderId = args.folderId;
-      console.log({ folderId });
       const foundFolder = await FolderModel.findById(folderId);
       return foundFolder;
     },
@@ -50,82 +48,57 @@ export const resolvers = {
       return author;
     },
     notes: async (parent, args) => {
-      console.log({ parent });
       const notes = await NoteModel.find({
         folderId: parent.id,
       }).sort({
         updatedAt: "desc",
       });
-      console.log({ notes });
       return notes;
     },
   },
-  // Mutation: {
-  //   addNote: async (parent, args) => {
-  //     const newNote = new NoteModel(args);
-  //     await newNote.save();
-  //     return newNote;
-  //   },
-  //   updateNote: async (parent, args) => {
-  //     const noteId = args.id;
-  //     const note = await NoteModel.findByIdAndUpdate(noteId, args);
-  //     return note;
-  //   },
-  //   addFolder: async (parent, args, context) => {
-  //     const newFolder = new FolderModel({ ...args, authorId: context.uid });
-  //     pubsub.publish("FOLDER_CREATED", {
-  //       folderCreated: {
-  //         message: "A new folder created",
-  //       },
-  //     });
-  //     await newFolder.save();
-  //     console.log({ newFolder });
-  //     return newFolder;
-  //   },
-  //   register: async (parent, args) => {
-  //     const foundUser = await AuthorModel.findOne({ uid: args.uid });
-
-  //     if (!foundUser) {
-  //       const newUser = new AuthorModel(args);
-  //       await newUser.save();
-  //       return newUser;
-  //     }
-
-  //     return foundUser;
-  //   },
-  // pushNotification: async (parent, args) => {
-  //   const newNotification = new NotificationModel(args);
-
-  //   pubsub.publish("PUSH_NOTIFICATION", {
-  //     notification: {
-  //       message: args.content,
-  //     },
-  //   });
-
-  //   await newNotification.save();
-  //   return { message: "SUCCESS" };
-  // },
-  // },
   Mutation: {
+    addNote: async (parent, args) => {
+      const newNote = new NoteModel(args);
+      await newNote.save();
+      return newNote;
+    },
+    updateNote: async (parent, args) => {
+      const noteId = args.id;
+      const note = await NoteModel.findByIdAndUpdate(noteId, args);
+      return note;
+    },
     addFolder: async (parent, args, context) => {
-      const newFolder = await new Folder.create({
-        ...args,
-        authorId: context.uid,
+      const newFolder = new FolderModel({ ...args, authorId: context.uid });
+      pubsub.publish("FOLDER_CREATED", {
+        folderCreated: {
+          message: "A new folder created",
+        },
       });
       await newFolder.save();
       return newFolder;
     },
-    addNote: async (parent, args) => {
-      const newNode = new NoteModel.create(args);
-      await newNode.save();
-      return newNode;
-    },
     register: async (parent, args) => {
       const foundUser = await AuthorModel.findOne({ uid: args.uid });
+
       if (!foundUser) {
-        const newUser = NoteModel.create({ uid: args.uid });
+        const newUser = new AuthorModel(args);
+        await newUser.save();
         return newUser;
       }
+
+      return foundUser;
+    },
+    pushNotification: async (parent, args) => {
+      const newNotification = new NotificationModel(args);
+
+      pubsub.publish("PUSH_NOTIFICATION", {
+        notification: {
+          message: args.content,
+        },
+      });
+
+      await newNotification.save();
+      return { message: "SUCCESS" };
     },
   },
   Subscription: {

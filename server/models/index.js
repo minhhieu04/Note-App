@@ -1,5 +1,11 @@
-import NoteModel from "./noteModel.js";
-import FolderModel from "./folderModel.js";
-import AuthorModel from "./authorModel.js";
+import NoteModel from "./NoteModel.js";
+import FolderModel from "./FolderModel.js";
+import AuthorModel from "./AuthorModel.js";
+import NotificationModel from "./NotificationModel.js";
 
-export { NoteModel, FolderModel, AuthorModel };
+export {
+  NoteModel,
+  FolderModel,
+  AuthorModel,
+  NotificationModel
+}

@@ -1,18 +1,14 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const NoteSchema = new mongoose.Schema(
-  {
-    content: {
-      type: String,
-      required: true,
-    },
-    folderId: {
-      type: String,
-      required: true,
-    },
+const noteSchema = new mongoose.Schema({
+  content: {
+    type: String,
   },
-  { timestamps: true }
-);
+  folderId: {
+    type: String,
+    required: true
+  }
+}, { timestamps: true });
 
-const noteModel = mongoose.model("Note", NoteSchema);
-export default noteModel;
+const NoteModel = mongoose.model('Note', noteSchema);
+export default NoteModel;

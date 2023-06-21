@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { NoteAddOutlined } from "@mui/icons-material";
 import {
   Card,
@@ -77,9 +76,9 @@ export default function NoteList() {
               }}
             >
               <Typography sx={{ fontWeight: "bold" }}>
-                Ghi nhưng chưa chắc đã xem
+                Tất cả ghi chú
               </Typography>
-              <Tooltip title="Thêm ghi chú" onClick={handleAddNewNote}>
+              <Tooltip title="Add Note" onClick={handleAddNewNote}>
                 <IconButton size="small">
                   <NoteAddOutlined />
                 </IconButton>
@@ -108,7 +107,9 @@ export default function NoteList() {
                     <div
                       style={{ fontSize: 14, fontWeight: "bold" }}
                       dangerouslySetInnerHTML={{
-                        __html: `${content.substring(0, 30) || "Empty"}`,
+                        __html: `${
+                          content.substring(0, 30) || "Chưa có gì cả"
+                        }`,
                       }}
                     />
                     <Typography sx={{ fontSize: "10px" }}>

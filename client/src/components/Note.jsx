@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useMemo, useState } from "react";
 import {
   ContentState,
@@ -31,10 +29,9 @@ export default function Note() {
     setEditorState(EditorState.createWithContent(state));
   }, [note.id]);
 
-  console.log({ location });
-
   useEffect(() => {
     debouncedMemorized(rawHTML, note, location.pathname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rawHTML, location.pathname]);
 
   const debouncedMemorized = useMemo(() => {
@@ -49,6 +46,7 @@ export default function Note() {
         }
       );
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -64,7 +62,7 @@ export default function Note() {
     <Editor
       editorState={editorState}
       onEditorStateChange={handleOnChange}
-      placeholder="Cho tui ít chữ điiiii"
+      placeholder="Viết gì đó đi chứ:)))"
     />
   );
 }

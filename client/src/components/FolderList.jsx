@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { Card, CardContent, List, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
@@ -8,6 +6,7 @@ import NewFolder from "./NewFolder";
 
 export default function FolderList({ folders }) {
   const { folderId } = useParams();
+  console.log({ folderId });
   const [activeFolderId, setActiveFolderId] = useState(folderId);
 
   return (
@@ -29,7 +28,7 @@ export default function FolderList({ folders }) {
           }}
         >
           <Typography sx={{ fontWeight: "bold", color: "white" }}>
-            Danh mục Notes
+            Thư mục
           </Typography>
           <NewFolder />
         </Box>

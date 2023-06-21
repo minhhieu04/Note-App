@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-unused-vars
 import React, { useContext } from "react";
 import { Typography, Button } from "@mui/material";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
