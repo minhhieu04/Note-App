@@ -1,3 +1,3 @@
 export const GRAPHQL_SERVER = "https://note-app-server-td6q.onrender.com";
 export const GRAPHQL_SUBSCRIPTION_ENDPOINT =
-  "wss://https://note-app-server-td6q.onrender.com/graphql";
+  "wss://note-app-server-td6q.onrender.com/graphql";
