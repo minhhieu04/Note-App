@@ -1,14 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase-admin/app";
+import "dotenv/config";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAdMwVlp0_Zt6UUSCigZpYChIlnZuftXAU",
-  authDomain: "note-app-f7f01.firebaseapp.com",
-  projectId: "note-app-f7f01",
-  storageBucket: "note-app-f7f01.appspot.com",
-  messagingSenderId: "836638932128",
-  appId: "1:836638932128:web:bdf5038ede48bfd8ba5dc5",
-  measurementId: "G-JY311NT4NH",
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID,
 };
 
 // Initialize Firebase

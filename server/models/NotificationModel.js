@@ -1,10 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const notficationSchema = new mongoose.Schema({
-  content: {
-    type: String,
+const notificationSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+    },
   },
-}, { timestamps: true });
+  { timestamps: true }
+);
 
-const NotificationModel = mongoose.model('Notification', notficationSchema);
+const NotificationModel = mongoose.model("Notification", notificationSchema);
 export default NotificationModel;
